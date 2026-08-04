@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use verdict-contract in research or software, please cite it as below."
+title: "verdict-contract: a parseable verdict contract for LLM review gates"
+type: software
+authors:
+  - family-names: Dziatkovskii
+    given-names: Anton
+    orcid: "https://orcid.org/0000-0001-7408-3054"
+    affiliation: "Palo Alto AI Research Lab"
+repository-code: "https://github.com/Palo-Alto-AI-Research-Lab/verdict-contract"
+url: "https://github.com/Palo-Alto-AI-Research-Lab/verdict-contract"
+license: MIT
+keywords:
+  - LLM evaluation
+  - code review automation
+  - AI agents
+  - fail-safe design
+  - prompt injection
+abstract: >-
+  A ~200-line stdlib-only Python module that makes an LLM reviewer's verdict
+  machine-checkable: a whole-line sentinel marker, a closed enum with an explicit
+  AMBIGUOUS state, a weak layer that can block but never approve, and an exit-code
+  gate. Prompt rule and parser live in one file so the contract cannot drift. The
+  42 test cases are counterexamples produced by vendor models over seven adversarial
+  rounds against the authors' own review gate.
