@@ -104,3 +104,7 @@ you can send us.
 Related: [verified-ops-starter](https://github.com/Palo-Alto-AI-Research-Lab/verified-ops-starter)
 (your job exited 0, prove it did the work) and
 [awesome-verified-agents](https://github.com/Palo-Alto-AI-Research-Lab/awesome-verified-agents).
+
+## Devlog
+
+- [Seven rounds to a verdict](devlog/2026-08-04-seven-rounds-to-a-verdict.md) - how two vendor models spent an afternoon proving our review gate was lying, with every counterexample they produced.
