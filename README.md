@@ -101,6 +101,26 @@ Four of those rounds found a real hole in code we already believed was correct.
 Not included, on purpose: our reviewer prompts, machine topology, and approval routing.
 The contract is the reusable part; what changed when is in `CHANGELOG.md`.
 
+## Roadmap
+
+**Now — [v0.1.0](https://github.com/Palo-Alto-AI-Research-Lab/verdict-contract/releases/tag/v0.1.0).**
+`PROMPT_RULE` + strict/weak parser + `exit_code()` in one stdlib file, 42 contract cases, CI on
+three OSes × three Pythons plus a weekly run so rot surfaces without a push.
+
+**Next**, in the order we would take them:
+
+- **More counterexamples.** This contract only knows the failures 42 cases have shown it. The most
+  valuable thing anyone can send is a reviewer reply that fools it —
+  [open an issue with the exact text](https://github.com/Palo-Alto-AI-Research-Lab/verdict-contract/issues).
+- **Wrappers for more reviewers.** `examples/review_gate.py` wraps any CLI reviewer today; the
+  common asks are a GitHub Action and a pre-commit hook.
+- **Retiring the weak legacy layer.** It can block but never approve — deliberate, and it should
+  stop being needed once callers emit the sentinel.
+
+Every noticeable change ships as a new release, so the
+[release feed](https://github.com/Palo-Alto-AI-Research-Lab/verdict-contract/releases) — not the
+commit graph — is where you can see whether the contract has moved under you.
+
 ## Who made this
 
 [Palo Alto AI Research Lab](https://github.com/Palo-Alto-AI-Research-Lab) — one founder
