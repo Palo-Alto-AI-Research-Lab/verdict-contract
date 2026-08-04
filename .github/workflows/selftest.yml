@@ -1,0 +1,31 @@
+name: selftest
+
+# The gate this repo demands of its users: a test that nobody runs does not exist.
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "23 5 * * 1"   # weekly, so rot shows up without a push
+
+jobs:
+  selftest:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.9", "3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: contract test
+        run: python test_verdict_contract.py
+      - name: the README quickstart must actually work
+        shell: bash
+        run: |
+          printf 'diff --git a/x b/x\n+bad line\n' > /tmp/d.txt
+          python examples/review_gate.py 'printf "no issues\n===VERDICT=== APPROVE\n"' < /tmp/d.txt
+          python examples/review_gate.py 'printf "found a bug\n===VERDICT=== REQUEST_CHANGES\n"' < /tmp/d.txt && exit 1 || test $? -eq 3
+          python examples/review_gate.py 'printf "I think it is fine\n"' < /tmp/d.txt && exit 1 || test $? -eq 4
